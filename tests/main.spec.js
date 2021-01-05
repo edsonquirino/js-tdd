@@ -1,49 +1,68 @@
-var expect = require('chai').expect
+import { expect } from 'chai';
+import { sum, sub, mult, div } from '../src/main';
 
-describe('main', function() {
+describe('calc', () => {
     
-    var arr;
+    // smoke tests
+    describe('Smoke tests', () => {
 
-    // roda uma vez ANTES do bloco
-    before(function() {
-        // inicia uma conexão com o banco
-        // cria um conjunto de dados
+        it('should exist the method `sum`', () => {
+            expect(sum).to.exist;
+            expect(sum).to.be.a.function;
+        });
+
+        it('should exist the method `sub`', () => {
+            expect(sub).to.exist;
+            expect(sub).to.be.a.function;
+        });
+
+        it('should exist the method `mult`', () => {
+            expect(mult).to.exist;
+            expect(mult).to.be.a.function;
+        });
+
+        it('should exist the method `div`', () => {
+            expect(div).to.exist;
+            expect(div).to.be.a.function;
+        });
+
     });
 
-    // roda uma vez DEPOIS do bloco
-    after(function() {
-        // fecha conexão com o banco
-        // destrói o conjunto de dados
-    });
-
-    // roda todas as vezes antes de CADA bloco
-    beforeEach(function() {
-        arr = [1, 2, 3];
-
-    });
-
-    // roda todas as vezes depois de CADA bloco
-    afterEach(function() {
+    // calc
+    describe('Sum', () => {
+        
+        it('should return 4 when `sum(2,2)`', () => {
+        expect(sum(2, 2)).to.be.equal(4);
+        });
         
     });
 
-    it('should be an array', function() {
-        expect(arr).to.be.a('array');
+    describe('Sub', () => {
+        
+        it('should return 2 when `sub(4,2)`', () => {
+        expect(sub(4, 2)).to.be.equal(2);
+        });
+        
     });
 
-    it('shoud have a size of 4 when push another value to the array', function() {
-        arr.push(4);
-        expect(arr).to.have.lengthOf(4);
+    describe('Mult', () => {
+        
+        it('should return 8 when `mult(4,2)`', () => {
+        expect(mult(4, 2)).to.be.equal(8);
+        });
+        
     });
 
-    it('shoud remove the value 3 when use pop in the array', function() {
-        arr.pop();
-        expect(arr).to.not.include(3);
-    });
+    describe('Div', () => {
+        
+        it('should return 2 when `div(4,2)`', () => {
+        expect(div(4, 2)).to.be.equal(2);
+        });
 
-    it('shoud have a size of 2 when pop a value from the array', function() {
-        arr.pop();
-        expect(arr).to.have.lengthOf(2);
+        it('should return `Não é possível divisão por zero!` when divide by 0', () => {
+            expect(div(4,0)).to.be.equal('Não é possível divisão por zero!');
+        });
+        
     });
 
 });
